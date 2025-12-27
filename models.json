@@ -139,40 +139,19 @@
         "description": "Qwen-Image-Edit model files for ComfyUI (image editing and manipulation)",
         "models": [
             {
-                "name": "Qwen-Image-Edit-2509",
+                "name": "Qwen-Image-Edit-2511-Lightning-FP8",
                 "type": "checkpoint",
-                "description": "Main Qwen-Image-Edit model for multi-image editing and consistency",
-                "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2509",
-                "size": "57.7 GB",
+                "description": "FP8 quantized Qwen-Image-Edit-2511 with 4-step Lightning distillation for ComfyUI",
+                "url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning",
+                "size": "20.4 GB",
                 "files": [
                     {
-                        "filename": "Full model (all components)",
-                        "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2509",
-                        "destination": "models/diffusion_models/qwen-image-edit/",
-                        "note": "Use huggingface-cli download Qwen/Qwen-Image-Edit-2509 to download all files"
+                        "filename": "qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning_comfyui.safetensors",
+                        "url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/resolve/main/qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning_comfyui.safetensors",
+                        "destination": "models/diffusion_models/",
+                        "note": "FP8 ComfyUI optimized version with Lightning 4-step distillation"
                     }
                 ]
-            },
-            {
-                "name": "Qwen-Image-Edit-2509-Q5_0-GGUF",
-                "type": "checkpoint",
-                "description": "Quantized GGUF model (Q5_0) - RTX 5090 compatible (~14.4 GB VRAM)",
-                "url": "https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF",
-                "size": "14.4 GB",
-                "vram_requirement": "~18-20 GB",
-                "quality_loss": "<3%",
-                "files": [
-                    {
-                        "filename": "Qwen-Image-Edit-2509-Q5_0.gguf",
-                        "url": "https://huggingface.co/QuantStack/Qwen-Image-Edit-2509-GGUF/resolve/main/Qwen-Image-Edit-2509-Q5_0.gguf",
-                        "destination": "models/unet/",
-                        "size": "14.4 GB"
-                    }
-                ],
-                "dependencies": {
-                    "comfyui_node": "ComfyUI-GGUF by city96",
-                    "node_url": "https://github.com/city96/ComfyUI-GGUF"
-                }
             }
         ],
         "vae": [
@@ -180,11 +159,11 @@
                 "name": "Qwen-Image-VAE",
                 "type": "vae",
                 "description": "VAE for Qwen-Image-Edit models",
-                "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2509/tree/main/vae",
+                "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2511/tree/main/vae",
                 "files": [
                     {
                         "filename": "qwen_image_vae.safetensors",
-                        "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2509/resolve/main/vae/diffusion_pytorch_model.safetensors",
+                        "url": "https://huggingface.co/Qwen/Qwen-Image-Edit-2511/resolve/main/vae/diffusion_pytorch_model.safetensors",
                         "destination": "models/vae/",
                         "note": "Download and rename to qwen_image_vae.safetensors"
                     }
@@ -223,32 +202,16 @@
         ],
         "loras": [
             {
-                "name": "Qwen-Image-Edit-Lightning-4steps",
+                "name": "Qwen-Image-Edit-2511-Lightning-4steps",
                 "type": "lora",
-                "description": "Lightning LoRA for 4-step fast generation (distillation)",
-                "url": "https://huggingface.co/lightx2v/Qwen-Image-Lightning/tree/main/Qwen-Image-Edit-2509",
+                "description": "Lightning LoRA for 4-step fast generation (distillation) - BF16",
+                "url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning",
                 "size_bf16": "850 MB",
                 "size_fp32": "1.7 GB",
                 "files": [
                     {
-                        "filename": "Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
-                        "url": "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors",
-                        "destination": "models/loras/",
-                        "size": "850 MB"
-                    }
-                ]
-            },
-            {
-                "name": "Qwen-Image-Edit-Lightning-8steps",
-                "type": "lora",
-                "description": "Lightning LoRA for 8-step balanced quality/speed generation",
-                "url": "https://huggingface.co/lightx2v/Qwen-Image-Lightning/tree/main/Qwen-Image-Edit-2509",
-                "size_bf16": "850 MB",
-                "size_fp32": "1.7 GB",
-                "files": [
-                    {
-                        "filename": "Qwen-Image-Edit-2509-Lightning-8steps-V1.0-bf16.safetensors",
-                        "url": "https://huggingface.co/lightx2v/Qwen-Image-Lightning/resolve/main/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-8steps-V1.0-bf16.safetensors",
+                        "filename": "Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
+                        "url": "https://huggingface.co/lightx2v/Qwen-Image-Edit-2511-Lightning/resolve/main/Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors",
                         "destination": "models/loras/",
                         "size": "850 MB"
                     }
@@ -335,73 +298,9 @@
         },
         "total_size": {
             "z_image_only": "~22.5 GB (main model + controlnet + loras + vae + text encoder)",
-            "qwen_image_edit_only": "~58.8 GB (main model + loras)",
-            "juggernaut_xl_only": "~6.46 GB (checkpoint with baked VAE)",
-            "all_suites": "~88-90 GB total (Z-Image + Qwen-Image-Edit + Juggernaut XL)",
-            "recommended_disk_space": "120-150 GB (including ComfyUI, Python env, and workspace)"
-        }
-    },
-    "juggernaut_xl": {
-        "description": "Juggernaut XL Ragnarok - Photorealistic SDXL checkpoint for NSFW/SFW generation",
-        "url": "https://civitai.com/models/133005/juggernaut-xl",
-        "base_model": "SDXL 1.0",
-        "models": [
-            {
-                "name": "Juggernaut XL Ragnarok",
-                "type": "checkpoint",
-                "version": "Ragnarok (Latest - May 2025)",
-                "description": "Photorealistic SDXL model with excellent hand/feet detail, supports NSFW/SFW. VAE baked in.",
-                "size": "~6.46 GB",
-                "url": "https://civitai.com/models/133005?modelVersionId=1759168",
-                "download_url": "https://civitai.com/api/download/models/1759168",
-                "files": [
-                    {
-                        "filename": "juggernautXL_ragnarokBy.safetensors",
-                        "url": "https://civitai.com/api/download/models/1759168",
-                        "destination": "models/checkpoints/",
-                        "size": "6.46 GB"
-                    }
-                ],
-                "settings": {
-                    "sampler": "DPM++ 2M SDE",
-                    "steps": "30-40",
-                    "cfg_scale": "3-6 (lower is more realistic)",
-                    "resolution": "832x1216 (portrait) or any SDXL resolution",
-                    "vae": "Built-in (no separate VAE needed)",
-                    "hires_fix": "4xNMKD-Siax_200k with 15 steps, 0.3 denoise, 1.5 upscale"
-                },
-                "features": [
-                    "Photorealism excellence",
-                    "Improved hands and feet",
-                    "Digital painting support",
-                    "Better poses and anatomy",
-                    "NSFW/SFW versatile",
-                    "No separate VAE required",
-                    "Compatible with SDXL LoRAs"
-                ],
-                "notes": [
-                    "Use minimal or no negative prompts initially",
-                    "Lower CFG (3-6) produces more realistic results",
-                    "Excellent for inpainting with ComfyUI VAEEncodeForInpaint node",
-                    "Can be used in pipeline: Flux/Pixelwave → Juggernaut XL Ragnarok",
-                    "Supports all standard SDXL features",
-                    "License allows commercial use with attribution"
-                ]
-            }
-        ],
-        "recommended_loras": [
-            {
-                "name": "Detail Enhancer",
-                "description": "Further enhance photorealistic details",
-                "note": "Check CivitAI for compatible SDXL LoRAs"
-            }
-        ],
-        "use_cases": {
-            "photorealistic_portraits": "Excellent for realistic human portraits with proper anatomy",
-            "nsfw_generation": "High-quality NSFW content with realistic skin and details",
-            "inpainting": "Use with ComfyUI inpaint nodes for precise local editing",
-            "character_creation": "Versatile for creating consistent characters",
-            "commercial_use": "Allowed with attribution per CreativeML Open RAIL++-M license"
+            "qwen_image_edit_only": "~21.2 GB (FP8 model + loras)",
+            "all_suites": "~44 GB total (Z-Image + Qwen-Image-Edit)",
+            "recommended_disk_space": "80-100 GB (including ComfyUI, Python env, and workspace)"
         }
     }
 }

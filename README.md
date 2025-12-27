@@ -21,7 +21,7 @@ Docker image optimized for **NVIDIA RTX 5090** with CUDA 12.8, PyTorch 2.6.0+cu1
 - De-Turbo LoRA (enhanced details)
 - AIO LoRA (All-In-One enhancement)
 
-#### 2. **Qwen-Image-Edit-2509** (Image Editing)
+#### 2. **Qwen-Image-Edit-2511** (Image Editing)
 - **Q5_0 Quantized Version** (14.4 GB) - RTX 5090 optimized
 - Multi-image editing with consistency preservation
 - Lightning LoRA (4-step/8-step fast generation)
@@ -30,12 +30,6 @@ Docker image optimized for **NVIDIA RTX 5090** with CUDA 12.8, PyTorch 2.6.0+cu1
   - Multiple-Angles (Multi-angle camera control)
   - Light-Migration (Light transfer)
   - Best-Face-Swap (Face swapping)
-
-#### 3. **Juggernaut XL Ragnarok** (NSFW Photorealistic)
-- 6.46 GB photorealistic model
-- Built-in VAE
-- Excellent hand/feet details
-- SFW/NSFW versatile
 
 ### Automatic Model Download
 - 📦 Auto-download all models on first startup
@@ -93,8 +87,8 @@ docker run -d \
 ├── runpod-slim/
 │   ├── ComfyUI/                    # ComfyUI main directory
 │   │   ├── models/
-│   │   │   ├── checkpoints/        # Juggernaut XL
-│   │   │   ├── unet/               # Qwen-Image-Edit Q5_0 GGUF
+│   │   │   ├── checkpoints/        # Checkpoints
+│   │   │   ├── unet/               # UNet models
 │   │   │   ├── vae/                # VAE models
 │   │   │   ├── text_encoders/      # Text Encoders (Qwen2.5-VL, Qwen3)
 │   │   │   ├── loras/              # LoRAs (Lightning, editing enhancements)
@@ -147,38 +141,29 @@ Edit `/workspace/runpod-slim/comfyui_args.txt` (one argument per line):
 - **Generation Steps**: 8 steps (Turbo)
 - **Features**: Fast generation, multiple ControlNet support
 
-### Qwen-Image-Edit-2509
-- **Quantized Version**: Q5_0 (14.4 GB)
-- **Original Size**: 57.7 GB → 75% compression
+### Qwen-Image-Edit-2511
+- **Quantized Version**: FP8 Lightning (20.4 GB)
+- **Original Size**: 57.7 GB → 65% compression
 - **VRAM Requirement**: ~18-20 GB
-- **Quality Loss**: <3%
-- **Features**: Multi-image editing, consistency preservation, Lightning acceleration
-
-### Juggernaut XL Ragnarok
-- **Size**: 6.46 GB
-- **Type**: SDXL checkpoint
-- **VAE**: Built-in
-- **Features**: Photorealistic portraits, high-quality NSFW
+- **Features**: Multi-image editing, consistency preservation, Lightning 4-step acceleration
 
 ## 💾 Disk Space Requirements
 
 | Item | Size |
 |------|------|
 | Z-Image-Turbo Suite | ~22.5 GB |
-| Qwen-Image-Edit (Q5_0) | ~20 GB |
-| Juggernaut XL | ~6.5 GB |
+| Qwen-Image-Edit (FP8) | ~21 GB |
 | ComfyUI + Dependencies | ~10 GB |
-| **Total** | ~60-70 GB |
+| **Total** | ~55-60 GB |
 
-**Recommended Disk Space**: 100-120 GB
+**Recommended Disk Space**: 80-100 GB
 
 ## 🎯 Performance Optimization
 
 ### RTX 5090 32GB VRAM Configuration
 ```
 Z-Image-Turbo: 12-15 GB VRAM (FP16)
-Qwen-Image-Edit Q5_0: 18-20 GB VRAM
-Juggernaut XL: 8-10 GB VRAM (FP16)
+Qwen-Image-Edit FP8: 18-20 GB VRAM
 
 Can load multiple models simultaneously!
 ```
@@ -229,8 +214,7 @@ ls /workspace/runpod-slim/ComfyUI/custom_nodes/ComfyUI-GGUF
 - ✅ RTX 5090 exclusive optimizations (CUDA 12.8)
 - ✅ Integrated xFormers and TorchAO
 - ✅ Pre-configured Z-Image-Turbo
-- ✅ Pre-configured Qwen-Image-Edit-2509 (Q5_0)
-- ✅ Pre-configured Juggernaut XL Ragnarok
+- ✅ Pre-configured Qwen-Image-Edit-2511 (FP8 Lightning)
 - ✅ Automatic model download script
 - ✅ ComfyUI-GGUF node support
 
@@ -240,7 +224,6 @@ This project is based on the following licenses:
 - ComfyUI: GPL-3.0
 - Z-Image-Turbo: Apache 2.0
 - Qwen-Image-Edit: Apache 2.0
-- Juggernaut XL: CreativeML Open RAIL++-M
 
 ## 🤝 Contributing
 
@@ -250,8 +233,7 @@ Issues and Pull Requests are welcome!
 
 - [ComfyUI](https://github.com/comfyanonymous/ComfyUI)
 - [Z-Image-Turbo](https://huggingface.co/Tongyi-MAI/Z-Image-Turbo)
-- [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2509)
-- [Juggernaut XL](https://civitai.com/models/133005/juggernaut-xl)
+- [Qwen-Image-Edit](https://huggingface.co/Qwen/Qwen-Image-Edit-2511)
 - [models.json](./models.json) - Complete model list
 
 ---

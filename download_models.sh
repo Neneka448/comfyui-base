@@ -73,15 +73,15 @@ mv /tmp/z-image-models/split_files/text_encoders/qwen_3_4b.safetensors \
 rm -rf /tmp/z-image-models
 
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${GREEN}  2. Downloading Qwen-Image-Edit-2509 Models (Quantized)${NC}"
+echo -e "${GREEN}  2. Downloading Qwen-Image-Edit-2511 Models (Quantized)${NC}"
 echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 
-# Qwen-Image-Edit-2509 Main Model (FP8)
-echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit-2509 (FP8)...${NC}"
-hf download Comfy-Org/Qwen-Image-Edit_ComfyUI \
-    split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors \
+# Qwen-Image-Edit-2511 Main Model (FP8 Lightning)
+echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit-2511 (FP8 Lightning ComfyUI)...${NC}"
+hf download lightx2v/Qwen-Image-Edit-2511-Lightning \
+    qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning_comfyui.safetensors \
     --local-dir /tmp/qwen-models
-mv /tmp/qwen-models/split_files/diffusion_models/qwen_image_edit_2509_fp8_e4m3fn.safetensors \
+mv /tmp/qwen-models/qwen_image_edit_2511_fp8_e4m3fn_scaled_lightning_comfyui.safetensors \
     "$COMFYUI_DIR/models/diffusion_models/"
 rm -rf /tmp/qwen-models
 
@@ -103,21 +103,11 @@ mv /tmp/qwen-models/split_files/text_encoders/qwen_2.5_vl_7b_fp8_scaled.safetens
     "$COMFYUI_DIR/models/text_encoders/"
 rm -rf /tmp/qwen-models
 
-# Qwen-Image-Edit Lightning LoRAs
-echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit Lightning 4-step LoRA...${NC}"
-hf download lightx2v/Qwen-Image-Lightning \
-    Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors \
-    --local-dir /tmp/lightning-lora
-mv /tmp/lightning-lora/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-4steps-V1.0-bf16.safetensors \
-    "$COMFYUI_DIR/models/loras/"
-
-echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit Lightning 8-step LoRA...${NC}"
-hf download lightx2v/Qwen-Image-Lightning \
-    Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-8steps-V1.0-bf16.safetensors \
-    --local-dir /tmp/lightning-lora
-mv /tmp/lightning-lora/Qwen-Image-Edit-2509/Qwen-Image-Edit-2509-Lightning-8steps-V1.0-bf16.safetensors \
-    "$COMFYUI_DIR/models/loras/"
-rm -rf /tmp/lightning-lora
+# Qwen-Image-Edit-2511 Lightning LoRA (4-step bf16)
+echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit-2511 Lightning 4-step LoRA (bf16)...${NC}"
+hf download lightx2v/Qwen-Image-Edit-2511-Lightning \
+    Qwen-Image-Edit-2511-Lightning-4steps-V1.0-bf16.safetensors \
+    --local-dir "$COMFYUI_DIR/models/loras"
 
 # Qwen-Image-Edit Popular LoRAs
 echo -e "${YELLOW}📦 Downloading Qwen-Image-Edit popular LoRAs...${NC}"
@@ -142,24 +132,13 @@ hf download Alissonerdx/BFS-Best-Face-Swap \
     bfs_face_v1_qwen_image_edit_2509.safetensors \
     --local-dir "$COMFYUI_DIR/models/loras"
 
-echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-echo -e "${GREEN}  3. Downloading Juggernaut XL Ragnarok (from CivitAI)${NC}"
-echo -e "${GREEN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
-
-# CivitAI download requires API key: export CIVITAI_API_KEY=your_key
-echo -e "${YELLOW}📦 Downloading Juggernaut XL Ragnarok checkpoint (6.46 GB) from CivitAI...${NC}"
-curl -L \
-    -o "$COMFYUI_DIR/models/checkpoints/juggernautXL_ragnarokBy.safetensors" \
-    "https://civitai.com/api/download/models/1759168"
-
 echo ""
 echo -e "${GREEN}╔════════════════════════════════════════════════════════════════╗${NC}"
 echo -e "${GREEN}║                    Download Complete!                          ║${NC}"
 echo -e "${GREEN}╚════════════════════════════════════════════════════════════════╝${NC}"
 echo ""
 echo -e "${GREEN}✓ Z-Image-Turbo models downloaded${NC}"
-echo -e "${GREEN}✓ Qwen-Image-Edit-2509 (FP8) downloaded${NC}"
-echo -e "${GREEN}✓ Juggernaut XL Ragnarok downloaded${NC}"
+echo -e "${GREEN}✓ Qwen-Image-Edit-2511 (FP8) downloaded${NC}"
 echo -e "${GREEN}✓ All LoRAs and supporting files downloaded${NC}"
 echo ""
 echo -e "${YELLOW}📊 Total disk usage:${NC}"
